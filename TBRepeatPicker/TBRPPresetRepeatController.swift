@@ -10,23 +10,23 @@ import UIKit
 
 private let TBRPPresetRepeatCellID = "TBRPPresetRepeatCell"
 
-@objc protocol TBRepeatPickerDelegate {
+@objc public protocol TBRepeatPickerDelegate {
     func didPickRecurrence(_ recurrence: TBRecurrence?, repeatPicker: TBRepeatPicker)
 }
 
-class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControllerDelegate {
+public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControllerDelegate {
     // MARK: - Public properties
-    var occurrenceDate = Date()
-    var tintColor = UIColor.blue
-    var language: TBRPLanguage = .english
-    var delegate: TBRepeatPickerDelegate?
+    public var occurrenceDate = Date()
+    public var tintColor = UIColor.blue
+    public var language: TBRPLanguage = .english
+    public var delegate: TBRepeatPickerDelegate?
     
-    var recurrence: TBRecurrence? {
+    public var recurrence: TBRecurrence? {
         didSet {
             setupSelectedIndexPath(recurrence)
         }
     }
-    var selectedIndexPath = IndexPath(row: 0, section: 0)
+    public var selectedIndexPath = IndexPath(row: 0, section: 0)
     
     // MARK: - Private properties
     fileprivate var recurrenceBackup: TBRecurrence?
@@ -34,7 +34,7 @@ class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControl
     fileprivate var internationalControl: TBRPInternationalControl?
     
     // MARK: - View life cycle
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         commonInit()
@@ -54,7 +54,7 @@ class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControl
         }
     }
     
-    override func didMove(toParentViewController parent: UIViewController?) {
+    override public func didMove(toParentViewController parent: UIViewController?) {
         if parent == nil {
             // navigation was popped
             if TBRecurrence.isEqualRecurrence(recurrence, recurrence2: recurrenceBackup) == false {
@@ -133,11 +133,11 @@ class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControl
     }
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return presetRepeats.count
         } else {
@@ -145,25 +145,25 @@ class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControl
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0
     }
     
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 1 && recurrence != nil {
             return footerTitle()
         }
         return nil
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    override public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         if view.isKind(of: UITableViewHeaderFooterView.self) {
             let tableViewHeaderFooterView = view as! UITableViewHeaderFooterView
             tableViewHeaderFooterView.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(13.0))
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: TBRPPresetRepeatCellID)
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: TBRPPresetRepeatCellID)
@@ -184,12 +184,13 @@ class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControl
         } else {
             cell?.imageView?.isHidden = true
         }
-        
+
+
         return cell!
     }
 
     // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let lastSelectedCell = tableView.cellForRow(at: selectedIndexPath)
         let currentSelectedCell = tableView.cellForRow(at: indexPath)
         

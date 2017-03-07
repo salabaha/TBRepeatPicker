@@ -184,18 +184,20 @@ class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICol
                 return
             }
             
-            cell.setItemSelected(!selectedMonthdays.contains(day))
-            
-            if selectedMonthdays.contains(day) == true {
-                selectedMonthdays.removeObject(day)
-            } else {
-                selectedMonthdays.append(day)
-            }
-            cell.backgroundColor = UIColor.white
-            
-            if let _ = delegate {
-                delegate?.selectedMonthdaysDidChanged(selectedMonthdays)
-            }
+            cell.setItemSelected(true)
+
+            //Uncomment to enable multiple selection
+//            if selectedMonthdays.contains(day) == true {
+//                selectedMonthdays.removeObject(day)
+//            } else {
+//                selectedMonthdays.append(day)
+//            }
+            selectedMonthdays = [day]
+            collectionView.reloadData()
+
+            cell.backgroundColor = .white
+
+            delegate?.selectedMonthdaysDidChanged(selectedMonthdays)
         } else if mode == .months {
             let month = indexPath.row + 1
             if selectedMonths.count == 1 && selectedMonths.contains(month) == true {
@@ -209,10 +211,8 @@ class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICol
             } else {
                 selectedMonths.append(month)
             }
-            
-            if let _ = delegate {
-                delegate?.selectedMonthsDidChanged(selectedMonths)
-            }
+
+            delegate?.selectedMonthsDidChanged(selectedMonths)
         }
     }
 

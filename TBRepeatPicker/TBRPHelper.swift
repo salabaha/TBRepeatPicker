@@ -110,14 +110,15 @@ class TBRPHelper {
         let internationalControl = TBRPInternationalControl(language: language)
         let commonWeekdays = weekdays(language)
         let additionDays = [internationalControl.localized("TBRPHelper.daysInWeekPicker.day", comment: "day"), internationalControl.localized("TBRPHelper.daysInWeekPicker.weekday", comment: "weekday"), internationalControl.localized("TBRPHelper.daysInWeekPicker.weekendDay", comment: "weekend day")]
-        
-        return commonWeekdays + additionDays
+
+        //Uncomment to enable additional days
+        return commonWeekdays/* + additionDays*/
     }
     
     class func numbersInWeekPicker(_ language: TBRPLanguage) -> [String] {
         let internationalControl = TBRPInternationalControl(language: language)
-        
-        return [internationalControl.localized("TBRPHelper.numbersInWeekPicker.first", comment: "first"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.second", comment: "second"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.third", comment: "third"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fourth", comment: "fourth"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fifth", comment: "fifth"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.last", comment: "last")]
+        //Uncomment to enable last week selection
+        return [internationalControl.localized("TBRPHelper.numbersInWeekPicker.first", comment: "first"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.second", comment: "second"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.third", comment: "third"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fourth", comment: "fourth"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fifth", comment: "fifth")/*, internationalControl.localized("TBRPHelper.numbersInWeekPicker.last", comment: "last")*/]
     }
     
     class func recurrenceString(_ recurrence: TBRecurrence, occurrenceDate: Date, language: TBRPLanguage) -> String? {

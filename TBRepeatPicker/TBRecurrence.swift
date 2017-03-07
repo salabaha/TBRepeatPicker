@@ -8,14 +8,14 @@
 
 import Foundation
 
-@objc enum TBRPFrequency: Int {
+@objc public enum TBRPFrequency: Int {
     case daily = 0
     case weekly = 1
     case monthly = 2
     case yearly = 3
 }
 
-@objc enum TBRPWeekPickerNumber: Int {
+@objc public enum TBRPWeekPickerNumber: Int {
     case first = 0
     case second = 1
     case third = 2
@@ -24,7 +24,7 @@ import Foundation
     case last = 5
 }
 
-@objc enum TBRPWeekPickerDay: Int {
+@objc public enum TBRPWeekPickerDay: Int {
     case sunday = 0
     case monday = 1
     case tuesday = 2
@@ -37,22 +37,22 @@ import Foundation
     case weekendDay = 9
 }
 
-class TBRecurrence: NSObject {
+public class TBRecurrence: NSObject {
     /** The frequency of recurrence, must be one of the following cases:
     * TBRPFrequency.Daily
     * TBRPFrequency.Weekly
     * TBRPFrequency.Monthly
     * TBRPFrequency.Yearly
     */
-    var frequency: TBRPFrequency = .daily
+    public var frequency: TBRPFrequency = .daily
     
     /** The interval between each frequency iteration. For example, when in a daily frequency, an interval of 1 means that event will occur every day, and an interval of 3 means that event will occur every 3 days. The default interval is 1.
     */
-    var interval: Int = 1
+    public var interval: Int = 1
     
     /** The selected weekdays when frequency is weekly. Elements in this array are all integers in a range between 0 to 6, 0 means Sunday, which is the first day of week, and the integers from 1 to 6 respectively mean the days from Monday to Saturday. This property value is valid only for a frequency type of TBRPFrequency.Weekly.
     */
-    var selectedWeekdays = [Int]() {
+    public var selectedWeekdays = [Int]() {
         didSet {
             selectedWeekdays = selectedWeekdays.sorted { $0 < $1 }
         }
@@ -60,11 +60,11 @@ class TBRecurrence: NSObject {
     
     /** A boolean value decides whether the recurrence is constructed by week number or not when frequency is weekly or yearly. For example, we can get a recurrence like "Second Friday" with it. This property value is valid only for a frequency type of TBRPFrequency.Monthly or TBRPFrequency.Yearly.
     */
-    var byWeekNumber = false
+    public var byWeekNumber = false
     
     /** The selected monthdays when frequency is monthly. Elements in this array are all integers in a range between 1 to 31, which respectively mean the days from 1st to 31st of a month. This property value is valid only for a frequency type of TBRPFrequency.Monthly.
     */
-    var selectedMonthdays = [Int]() {
+    public var selectedMonthdays = [Int]() {
         didSet {
             selectedMonthdays = selectedMonthdays.sorted { $0 < $1 }
         }
@@ -72,7 +72,7 @@ class TBRecurrence: NSObject {
     
     /** The selected months when frequency is yearly. Elements in this array are all integers in a range between 1 to 12, which respectively mean the months from January to December. This property value is valid only for a frequency type of TBRPFrequency.Yearly.
     */
-    var selectedMonths = [Int]() {
+    public var selectedMonths = [Int]() {
         didSet {
             selectedMonths = selectedMonths.sorted { $0 < $1 }
         }
@@ -88,7 +88,7 @@ class TBRecurrence: NSObject {
     
     This property value is valid only for a frequency type of TBRPFrequency.Monthly or TBRPFrequency.Yearly.
     */
-    var pickedWeekNumber: TBRPWeekPickerNumber = .first
+    public var pickedWeekNumber: TBRPWeekPickerNumber = .first
     
     /** The day of week when the recurrence is constructed by week number, must be one of the following cases:
     * TBRPWeekPickerDay.Sunday
@@ -104,10 +104,10 @@ class TBRecurrence: NSObject {
     
     This property value is valid only for a frequency type of TBRPFrequency.Monthly or TBRPFrequency.Yearly.
     */
-    var pickedWeekday: TBRPWeekPickerDay = .sunday
+    public var pickedWeekday: TBRPWeekPickerDay = .sunday
     
     // MARK: - Initialization
-    convenience init(occurrenceDate: Date) {
+    public convenience init(occurrenceDate: Date) {
         self.init()
         
         let occurrenceDateDayIndexInWeek = Calendar.dayIndexInWeek(occurrenceDate)
@@ -119,7 +119,7 @@ class TBRecurrence: NSObject {
         selectedMonths = [occurrenceDateMonthIndexInYear]
     }
     
-    func recurrenceCopy() -> TBRecurrence {
+    public func recurrenceCopy() -> TBRecurrence {
         let recurrence = TBRecurrence()
         
         recurrence.frequency = frequency

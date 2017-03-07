@@ -250,13 +250,46 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     }
     
     fileprivate func updateMoreOptions() {
-        if frequency == .daily {
+        //Uncomment to enable advanced yearly event functionality
+//        if frequency == .daily {
+//            let deleteRange = NSMakeRange(1, tableView.numberOfSections - 1)
+//            
+//            tableView.beginUpdates()
+//            tableView.deleteSections(IndexSet(integersIn: deleteRange.toRange() ?? 0..<0), with: .fade)
+//            tableView.endUpdates()
+//        } else if frequency == .weekly || frequency == .monthly {
+//            if tableView.numberOfSections == 1 {
+//                tableView.beginUpdates()
+//                tableView.insertSections(IndexSet(integer: 1), with: .fade)
+//                tableView.endUpdates()
+//            } else if tableView.numberOfSections == 2 {
+//                tableView.beginUpdates()
+//                tableView.reloadSections(IndexSet(integer: 1), with: .fade)
+//                tableView.endUpdates()
+//            } else if tableView.numberOfSections == 3 {
+//                tableView.beginUpdates()
+//                tableView.deleteSections(IndexSet(integer: 2), with: .fade)
+//                tableView.reloadSections(IndexSet(integer: 1), with: .fade)
+//                tableView.endUpdates()
+//            }
+//        } else if frequency == .yearly {
+//            if tableView.numberOfSections == 1 {
+//                let insertYearOptionsRange = NSMakeRange(1, 2)
+//                tableView.insertSections(IndexSet(integersIn: insertYearOptionsRange.toRange() ?? 0..<0), with: .fade)
+//            } else if tableView.numberOfSections == 2 {
+//                tableView.beginUpdates()
+//                tableView.reloadSections(IndexSet(integer: 1), with: .fade)
+//                tableView.insertSections(IndexSet(integer: 2), with: .fade)
+//                tableView.endUpdates()
+//            }
+//        }
+        if frequency == .daily || frequency == .yearly {
             let deleteRange = NSMakeRange(1, tableView.numberOfSections - 1)
-            
+
             tableView.beginUpdates()
             tableView.deleteSections(IndexSet(integersIn: deleteRange.toRange() ?? 0..<0), with: .fade)
             tableView.endUpdates()
-        } else if frequency == .weekly || frequency == .monthly {
+        } else {
             if tableView.numberOfSections == 1 {
                 tableView.beginUpdates()
                 tableView.insertSections(IndexSet(integer: 1), with: .fade)
@@ -269,16 +302,6 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                 tableView.beginUpdates()
                 tableView.deleteSections(IndexSet(integer: 2), with: .fade)
                 tableView.reloadSections(IndexSet(integer: 1), with: .fade)
-                tableView.endUpdates()
-            }
-        } else if frequency == .yearly {
-            if tableView.numberOfSections == 1 {
-                let insertYearOptionsRange = NSMakeRange(1, 2)
-                tableView.insertSections(IndexSet(integersIn: insertYearOptionsRange.toRange() ?? 0..<0), with: .fade)
-            } else if tableView.numberOfSections == 2 {
-                tableView.beginUpdates()
-                tableView.reloadSections(IndexSet(integer: 1), with: .fade)
-                tableView.insertSections(IndexSet(integer: 2), with: .fade)
                 tableView.endUpdates()
             }
         }
@@ -371,10 +394,16 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if frequency == .daily {
+        //Uncomment to enable advanced yearly event functionality
+//        if frequency == .daily {
+//            return 1
+//        } else if frequency == .yearly {
+//            return 3
+//        } else {
+//            return 2
+//        }
+        if frequency == .daily || frequency == .yearly{
             return 1
-        } else if frequency == .yearly {
-            return 3
         } else {
             return 2
         }
