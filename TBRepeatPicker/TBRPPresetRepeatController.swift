@@ -177,8 +177,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             cell?.textLabel?.text = presetRepeats[indexPath.row]
         }
 
-        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark", in: Bundle(for: type(of: self)),
-                                         compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        cell?.imageView?.image = self.checkmark()
         
         if indexPath == selectedIndexPath {
             cell?.imageView?.isHidden = false
@@ -223,7 +222,14 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
+    private func checkmark() -> UIImage? {
+        let bundle = Bundle(for: type(of: self)).url(forResource: "TBRepeatPicker", withExtension: "bundle")
+                                                .flatMap(Bundle.init(url:))
+        return UIImage(named: "TBRP-Checkmark", in: bundle,
+                       compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    }
+
     // MARK: - TBRPCustomRepeatController delegate
     func didFinishPickingCustomRecurrence(_ recurrence: TBRecurrence) {
         self.recurrence = recurrence
