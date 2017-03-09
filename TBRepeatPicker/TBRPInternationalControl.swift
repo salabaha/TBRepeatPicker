@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TBRPInternationalControl: NSObject {
+public class TBRPInternationalControl: NSObject {
     var language: TBRPLanguage = .english
     
     convenience init(language: TBRPLanguage!) {
@@ -27,7 +27,7 @@ class TBRPInternationalControl: NSObject {
         }
     }
     
-    func localized(_ key: String!, comment: String!) -> String {
+    public func localized(_ key: String!, comment: String!) -> String {
         if let localizedString = localizedForKey(key) as String? {
             if localizedString == key {
                 return comment
