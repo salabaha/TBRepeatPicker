@@ -176,8 +176,9 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             cell?.accessoryType = .none
             cell?.textLabel?.text = presetRepeats[indexPath.row]
         }
-        
-        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark")?.withRenderingMode(.alwaysTemplate)
+
+        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark", in: Bundle(for: type(of: self)),
+                                         compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         
         if indexPath == selectedIndexPath {
             cell?.imageView?.isHidden = false
