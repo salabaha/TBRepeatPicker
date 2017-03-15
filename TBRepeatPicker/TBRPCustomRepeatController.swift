@@ -352,7 +352,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     }
     
     fileprivate func footerTitle() -> String? {
-        return TBRPHelper.recurrenceString(recurrence, occurrenceDate: occurrenceDate, language: language)
+        return TBRPHelper.recurrenceString(recurrence, language: language)
     }
     
     fileprivate func unit() -> String? {

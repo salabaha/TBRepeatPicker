@@ -100,7 +100,7 @@ class DemoViewController: UIViewController, TBRepeatPickerDelegate, SwitchLangua
     
     fileprivate func updateResultTextView() {
         if let _ = recurrence {
-            resultTextView.text = TBRPHelper.recurrenceString(recurrence!, occurrenceDate: occurrenceDate, language: language)
+            resultTextView.text = TBRPHelper.recurrenceString(recurrence!, language: language)
         } else {
             resultTextView.text = "Never Repeat"
         }

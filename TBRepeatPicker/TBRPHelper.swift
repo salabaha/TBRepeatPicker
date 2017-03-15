@@ -121,7 +121,7 @@ class TBRPHelper {
         return [internationalControl.localized("TBRPHelper.numbersInWeekPicker.first", comment: "first"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.second", comment: "second"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.third", comment: "third"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fourth", comment: "fourth"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fifth", comment: "fifth")/*, internationalControl.localized("TBRPHelper.numbersInWeekPicker.last", comment: "last")*/]
     }
     
-    class func recurrenceString(_ recurrence: TBRecurrence, occurrenceDate: Date, language: TBRPLanguage) -> String? {
+    class func recurrenceString(_ recurrence: TBRecurrence, language: TBRPLanguage) -> String? {
         let internationalControl = TBRPInternationalControl(language: language)
         
         var unitString: String?
@@ -150,14 +150,13 @@ class TBRPHelper {
             return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
         } else if recurrence.frequency == .weekly {
             // Weekly
-            let occurrenceDateDayIndexInWeek = Calendar.dayIndexInWeek(occurrenceDate)
             
-            if recurrence.selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] {
+            if recurrence.selectedWeekdays.isEmpty {
                 return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
             } else if recurrence.isWeekdayRecurrence() {
                 return internationalControl.localized("RecurrenceString.weekdayRecurrence", comment: "Event will occur every weekday.")
             } else if recurrence.selectedWeekdays == [0, 1, 2, 3, 4, 5, 6] && recurrence.interval == 1 {
-                return recurrenceString(TBRecurrence.dailyRecurrence(occurrenceDate), occurrenceDate: occurrenceDate, language: language)
+                return recurrenceString(TBRecurrence.dailyRecurrence(), language: language)
             } else {
                 var weekdaysString: String
                 if language == .korean {
@@ -205,9 +204,8 @@ class TBRPHelper {
                 
                 return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Event will occur every %@ %@"), unitString!, weekNumberString)
             } else {
-                let occurrenceDateDayIndexInMonth = Calendar.dayIndexInMonth(occurrenceDate)
                 
-                if recurrence.selectedMonthdays == [occurrenceDateDayIndexInMonth] {
+                if recurrence.selectedMonthdays.isEmpty {
                     return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
                 } else {
                     var monthdaysString: String
@@ -288,9 +286,7 @@ class TBRPHelper {
                 }
                 
             } else {
-                let occurrenceDateMonthIndexInYear = Calendar.monthIndexInYear(occurrenceDate)
-                
-                if recurrence.selectedMonths == [occurrenceDateMonthIndexInYear] {
+                if recurrence.selectedMonths.isEmpty {
                     return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
                 } else {
                     var monthsString: String

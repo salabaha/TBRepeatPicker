@@ -67,17 +67,19 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
     
     // MARK: - Helper
     fileprivate func setupSelectedIndexPath(_ recurrence: TBRecurrence?) {
-        if recurrence == nil {
+        guard let recurrence = recurrence else {
             selectedIndexPath = IndexPath(row: 0, section: 0)
-        } else if recurrence?.isDailyRecurrence() == true {
+            return
+        }
+        if recurrence.isDailyRecurrence() {
             selectedIndexPath = IndexPath(row: 1, section: 0)
-        } else if recurrence?.isWeeklyRecurrence(occurrenceDate) == true {
+        } else if recurrence.isWeeklyRecurrence() {
             selectedIndexPath = IndexPath(row: 2, section: 0)
-        } else if recurrence?.isBiWeeklyRecurrence(occurrenceDate) == true {
+        } else if recurrence.isBiWeeklyRecurrence() {
             selectedIndexPath = IndexPath(row: 3, section: 0)
-        } else if recurrence?.isMonthlyRecurrence(occurrenceDate) == true {
+        } else if recurrence.isMonthlyRecurrence() {
             selectedIndexPath = IndexPath(row: 4, section: 0)
-        } else if recurrence?.isYearlyRecurrence(occurrenceDate) == true {
+        } else if recurrence.isYearlyRecurrence() {
             selectedIndexPath = IndexPath(row: 5, section: 0)
         } else {
             selectedIndexPath = IndexPath(row: 0, section: 1)
@@ -94,19 +96,19 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             recurrence = nil
             
         case 1:
-            recurrence = TBRecurrence.dailyRecurrence(occurrenceDate)
+            recurrence = TBRecurrence.dailyRecurrence()
         
         case 2:
-            recurrence = TBRecurrence.weeklyRecurrence(occurrenceDate)
+            recurrence = TBRecurrence.weeklyRecurrence()
             
         case 3:
-            recurrence = TBRecurrence.biWeeklyRecurrence(occurrenceDate)
+            recurrence = TBRecurrence.biWeeklyRecurrence()
             
         case 4:
-            recurrence = TBRecurrence.monthlyRecurrence(occurrenceDate)
+            recurrence = TBRecurrence.monthlyRecurrence()
             
         case 5:
-            recurrence = TBRecurrence.yearlyRecurrence(occurrenceDate)
+            recurrence = TBRecurrence.yearlyRecurrence()
             
         default:
             break
@@ -127,7 +129,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             if selectedIndexPath.section == 0 {
                 return nil
             }
-            return TBRPHelper.recurrenceString(recurrence!, occurrenceDate: occurrenceDate, language: language)
+            return TBRPHelper.recurrenceString(recurrence!, language: language)
         }
         return nil
     }
@@ -208,7 +210,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             if let _ = recurrence {
                 customRepeatController.recurrence = recurrence!
             } else {
-                customRepeatController.recurrence = TBRecurrence.dailyRecurrence(occurrenceDate)
+                customRepeatController.recurrence = TBRecurrence.dailyRecurrence(occurenceDate: occurrenceDate)
             }
             customRepeatController.delegate = self
             
