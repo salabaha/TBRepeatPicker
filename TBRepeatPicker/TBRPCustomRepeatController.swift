@@ -43,6 +43,8 @@ protocol TBRPCustomRepeatControllerDelegate {
 
 class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate, TBRPSwitchCellDelegate, TBRPCollectionViewCellDelegate {
     // MARK: - Public properties
+    var cellFont = UIFont.systemFont(ofSize: 17)
+    var cellTextColor = UIColor.black
     var occurrenceDate = Date()
     var tintColor = UIColor.blue
     var language: TBRPLanguage = .english
@@ -509,6 +511,10 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                         cell?.detailTextLabel?.textColor = TBRPHelper.detailTextColor()
                     }
                 }
+
+                cell?.textLabel?.font = self.cellFont
+                cell?.textLabel?.textColor = self.cellTextColor
+                cell?.detailTextLabel?.font = self.cellFont
                 
                 return cell!
             }
@@ -533,6 +539,10 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                 } else if indexPath.row == TBRPHelper.weekdays(language).count - 1 {
                     cell?.updateBottomSeparatorWithLeftX(0)
                 }
+
+                cell?.textLabel?.font = self.cellFont
+                cell?.textLabel?.textColor = self.cellTextColor
+                cell?.detailTextLabel?.font = self.cellFont
                 
                 return cell!
             } else if frequency == .monthly {
@@ -550,6 +560,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                         cell.selectionStyle = .none
                         cell.selectedMonthdays = selectedMonthdays
                         cell.delegate = self
+                        cell.cellFont = self.cellFont
                         
                         return cell
                     }
@@ -586,6 +597,10 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                         cell?.textLabel?.text = nil
                     }
                     cell?.detailTextLabel?.text = nil
+                    
+                    cell?.textLabel?.font = self.cellFont
+                    cell?.textLabel?.textColor = self.cellTextColor
+                    cell?.detailTextLabel?.font = self.cellFont
                     
                     return cell!
                 }

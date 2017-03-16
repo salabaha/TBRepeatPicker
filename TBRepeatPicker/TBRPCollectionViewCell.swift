@@ -30,6 +30,7 @@ protocol TBRPCollectionViewCellDelegate {
 
 class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - Public properties
+    var cellFont = UIFont.systemFont(ofSize: 17)
     var language: TBRPLanguage = .english
     var selectedMonthdays = [Int]()
     var selectedMonths = [Int]()
@@ -146,8 +147,9 @@ class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICol
             cell.textLabel!.text = TBRPHelper.yearMonths(language)[indexPath.row]
             cell.setItemSelected(selectedMonths.contains(month))
         }
-        
+
         configureSeparatorLine(cell, indexPath: indexPath)
+        cell.textLabel?.font = cellFont
         
         return cell
     }

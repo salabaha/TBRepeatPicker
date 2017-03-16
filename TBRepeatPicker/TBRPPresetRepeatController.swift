@@ -16,6 +16,8 @@ private let TBRPPresetRepeatCellID = "TBRPPresetRepeatCell"
 
 public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControllerDelegate {
     // MARK: - Public properties
+    public var cellFont = UIFont.systemFont(ofSize: 17)
+    public var cellTextColor = UIColor.black
     public var occurrenceDate = Date()
     public var tintColor = UIColor.blue
     public var language: TBRPLanguage = .english
@@ -179,6 +181,9 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             cell?.textLabel?.text = presetRepeats[indexPath.row]
         }
 
+        cell?.textLabel?.font = self.cellFont
+        cell?.textLabel?.textColor = self.cellTextColor
+
         cell?.imageView?.image = self.checkmark()
         
         if indexPath == selectedIndexPath {
@@ -206,6 +211,8 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             customRepeatController.occurrenceDate = occurrenceDate
             customRepeatController.tintColor = tintColor
             customRepeatController.language = language
+            customRepeatController.cellFont = self.cellFont
+            customRepeatController.cellTextColor = self.cellTextColor
             
             if let _ = recurrence {
                 customRepeatController.recurrence = recurrence!
