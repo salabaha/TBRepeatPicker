@@ -23,10 +23,11 @@ enum TBRPLanguage: String {
 */
 @objc public enum TBRPLanguage: Int {
     case english = 0
-    case simplifiedChinese = 1
-    case traditionalChinese = 2
-    case korean = 3
-    case japanese = 4
+    case german = 1
+    case simplifiedChinese = 2
+    case traditionalChinese = 3
+    case korean = 4
+    case japanese = 5
 }
 
 public class TBRepeatPicker: TBRPPresetRepeatController  {

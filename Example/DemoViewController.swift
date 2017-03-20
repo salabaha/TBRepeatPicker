@@ -8,8 +8,8 @@
 
 import UIKit
 
-let languageStrings = ["English", "SimplifiedChinese", "TraditionalChinese", "Korean", "Japanese"]
-let languages: [TBRPLanguage] = [.english, .simplifiedChinese, .traditionalChinese, .korean, .japanese]
+let languageStrings = ["English", "German", "SimplifiedChinese", "TraditionalChinese", "Korean", "Japanese"]
+let languages: [TBRPLanguage] = [.english, .german, .simplifiedChinese, .traditionalChinese, .korean, .japanese]
 
 class DemoViewController: UIViewController, TBRepeatPickerDelegate, SwitchLanguageViewControllerDelegate {
     var occurrenceDate = Date()

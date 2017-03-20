@@ -16,8 +16,14 @@ public class TBRPInternationalControl: NSObject {
         
         self.language = language
     }
+
+    private lazy var bundle: Bundle? = {
+        return Bundle(for: type(of: self)).url(forResource: "TBRepeatPicker", withExtension: "bundle")
+            .flatMap(Bundle.init(url:))
+    }()
     
     fileprivate func localizedForKey(_ key: String!) -> String? {
+
         let path = Bundle.main.path(forResource: TBRPInternationalControl.languageKey(language), ofType: "lproj")
         if let _ = path {
             let bundle = Bundle(path: path!)
@@ -38,7 +44,7 @@ public class TBRPInternationalControl: NSObject {
     }
     
     class func languageKey(_ language: TBRPLanguage) -> String {
-        let languageKeys = ["en", "zh-Hans", "zh-Hant", "ko", "ja"]
+        let languageKeys = ["en", "de", "zh-Hans", "zh-Hant", "ko", "ja"]
         
         return languageKeys[language.rawValue]
     }
