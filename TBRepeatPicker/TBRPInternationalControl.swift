@@ -17,14 +17,14 @@ public class TBRPInternationalControl: NSObject {
         self.language = language
     }
 
-    private lazy var bundle: Bundle? = {
+    private lazy var bundle: Bundle = {
         return Bundle(for: type(of: self)).url(forResource: "TBRepeatPicker", withExtension: "bundle")
-            .flatMap(Bundle.init(url:))
+            .flatMap(Bundle.init(url:)) ?? Bundle.main
     }()
     
     fileprivate func localizedForKey(_ key: String!) -> String? {
 
-        let path = Bundle.main.path(forResource: TBRPInternationalControl.languageKey(language), ofType: "lproj")
+        let path = self.bundle.path(forResource: TBRPInternationalControl.languageKey(language), ofType: "lproj")
         if let _ = path {
             let bundle = Bundle(path: path!)
             return bundle!.localizedString(forKey: key, value: nil, table: "TBRPLocalizable")
