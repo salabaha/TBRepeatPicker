@@ -43,7 +43,7 @@ public class TBRPInternationalControl: NSObject {
         return comment
     }
     
-    class func languageKey(_ language: TBRPLanguage) -> String {
+    public class func languageKey(_ language: TBRPLanguage) -> String {
         let languageKeys = ["en", "de", "zh-Hans", "zh-Hant", "ko", "ja"]
         
         return languageKeys[language.rawValue]
