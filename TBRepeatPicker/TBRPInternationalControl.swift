@@ -11,7 +11,7 @@ import Foundation
 public class TBRPInternationalControl: NSObject {
     var language: TBRPLanguage = .english
     
-    convenience init(language: TBRPLanguage!) {
+    public convenience init(language: TBRPLanguage!) {
         self.init()
         
         self.language = language
