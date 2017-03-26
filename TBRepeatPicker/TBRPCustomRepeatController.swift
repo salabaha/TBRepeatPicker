@@ -369,9 +369,9 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     
     fileprivate func unitString() -> String? {
         if interval == 1 {
-            return unit()
+            return language == .german ? frequencies[(frequency?.rawValue)!] : unit()
         } else if interval > 1 {
-            return "\(interval!)" + " " + unit()!
+            return (language == .german ? "Alle " : "") + "\(interval!)" + " " + unit()!
         } else {
             return nil
         }

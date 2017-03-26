@@ -127,19 +127,36 @@ class TBRPHelper {
         var unitString: String?
         if language == .korean || language == .japanese {
             unitString = "\(recurrence.interval)" + pluralUnits(language)[recurrence.frequency.rawValue]
+        } else if language == .german {
+            if recurrence.interval == 1 {
+                let prefix: String
+                switch recurrence.frequency {
+                case .weekly:
+                    prefix = "jede "
+                case .yearly:
+                    prefix = "jedes "
+                default:
+                    prefix = "jeden "
+                }
+                unitString = prefix + units(language)[recurrence.frequency.rawValue]
+            } else if recurrence.interval > 1 {
+                unitString = "alle \(recurrence.interval) \(pluralUnits(language)[recurrence.frequency.rawValue])"
+            }
         } else {
             if recurrence.interval == 1 {
                 unitString = units(language)[recurrence.frequency.rawValue]
             } else if recurrence.interval > 1 {
-                if language == .english || language == .german {
+                if language == .english {
                     unitString = "\(recurrence.interval)" + " " + pluralUnits(language)[recurrence.frequency.rawValue]
                 } else {
                     unitString = "\(recurrence.interval)" + pluralUnits(language)[recurrence.frequency.rawValue]
                 }
             }
         }
-        
-        unitString = unitString?.lowercased()
+
+        if language != .german {
+            unitString = unitString?.lowercased()
+        }
         
         if unitString == nil {
             return nil
@@ -209,8 +226,10 @@ class TBRPHelper {
                     return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
                 } else {
                     var monthdaysString: String
-                    if language == .english || language == .german {
+                    if language == .english {
                         monthdaysString = internationalControl.localized("RecurrenceString.element.on.monthly", comment: "on the") + " " + englishDayString(recurrence.selectedMonthdays.first!)
+                    } else if language == .german {
+                        monthdaysString = internationalControl.localized("RecurrenceString.element.on.monthly", comment: "on the") + " " + String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays.first!)
                     } else if language == .korean {
                         monthdaysString = String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays.first!)
                     } else {
