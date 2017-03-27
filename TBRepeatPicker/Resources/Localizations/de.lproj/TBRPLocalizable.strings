@@ -28,12 +28,12 @@
 "TBRPHelper.presetRepeat.everyMonth" = "Jeden Monat";
 "TBRPHelper.presetRepeat.everyYear" = "Jedes Jahr";
 
-"TBRPHelper.numbersInWeekPicker.first" = "Ersten";
-"TBRPHelper.numbersInWeekPicker.second" = "Zweiten";
-"TBRPHelper.numbersInWeekPicker.third" = "Dritten";
-"TBRPHelper.numbersInWeekPicker.fourth" = "Vierten";
-"TBRPHelper.numbersInWeekPicker.fifth" = "Fünften";
-"TBRPHelper.numbersInWeekPicker.last" = "Am letzten";
+"TBRPHelper.numbersInWeekPicker.first" = "ersten";
+"TBRPHelper.numbersInWeekPicker.second" = "zweiten";
+"TBRPHelper.numbersInWeekPicker.third" = "dritten";
+"TBRPHelper.numbersInWeekPicker.fourth" = "vierten";
+"TBRPHelper.numbersInWeekPicker.fifth" = "fünften";
+"TBRPHelper.numbersInWeekPicker.last" = "am letzten";
 
 "TBRPHelper.daysInWeekPicker.day" = "Tag";
 "TBRPHelper.daysInWeekPicker.weekday" = "Wochentag";
