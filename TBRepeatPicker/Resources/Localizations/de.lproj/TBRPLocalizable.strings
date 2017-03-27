@@ -56,7 +56,7 @@
 "RecurrenceString.element.on.yearlyWeekString" = "am";
 "RecurrenceString.element.and" = "und";
 "RecurrenceString.element.comma" = ",";
-"RecurrenceString.element.day" = "%d";
+"RecurrenceString.element.day" = "%d.";
 "RecurrenceString.specifiedDaysOrMonths" = "Ereignis findet %@ %@ statt.";
 "RecurrenceString.yearlyByWeekNoString" = "Ereignis findet %@ %@ %@ statt.";
 "RecurrenceString.weekdayRecurrence" = "Ereignis findet an jedem Wochentag statt.";
