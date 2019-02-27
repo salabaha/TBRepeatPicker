@@ -287,9 +287,9 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
 //        }
         if frequency == .daily || frequency == .yearly {
             let deleteRange = NSMakeRange(1, tableView.numberOfSections - 1)
-
+            
             tableView.beginUpdates()
-            tableView.deleteSections(IndexSet(integersIn: deleteRange.toRange() ?? 0..<0), with: .fade)
+            tableView.deleteSections(IndexSet(integersIn: Range(deleteRange) ?? 0..<0), with: .fade)
             tableView.endUpdates()
         } else {
             if tableView.numberOfSections == 1 {

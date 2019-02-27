@@ -69,7 +69,7 @@ class TBRPPickerViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewD
         removeAllSeparators()
     }
 
-    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, pickerStyle: TBRPPickerStyle, language: TBRPLanguage) {
+    convenience init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, pickerStyle: TBRPPickerStyle, language: TBRPLanguage) {
         self.init()
 
         pickerView = UIPickerView.init(frame: CGRect(x: 0, y: 0, width: TBRPScreenWidth, height: TBRPPickerHeight))

@@ -58,7 +58,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         }
     }
 
-    override public func didMove(toParentViewController parent: UIViewController?) {
+    override public func didMove(toParent parent: UIViewController?) {
         if parent == nil {
             // navigation was popped
             if TBRecurrence.isEqualRecurrence(recurrence, recurrence2: recurrenceBackup) == false {

@@ -52,10 +52,10 @@ class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICol
         removeAllSeparators()
     }
     
-    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, mode: TBRPCollectionMode, language: TBRPLanguage) {
+    convenience init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, mode: TBRPCollectionMode, language: TBRPLanguage) {
         self.init()
         
-        separatorInset = UIEdgeInsetsMake(0, TBRPScreenWidth, 0, 0)
+        separatorInset = UIEdgeInsets(top: 0, left: TBRPScreenWidth, bottom: 0, right: 0)
         
         self.mode = mode
         if mode == .months {

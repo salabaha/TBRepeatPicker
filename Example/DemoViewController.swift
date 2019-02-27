@@ -36,7 +36,7 @@ class DemoViewController: UIViewController, TBRepeatPickerDelegate, SwitchLangua
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: languageTitle, style: .plain, target: self, action: #selector(DemoViewController.switchLanguage))
     }
     
-    func switchLanguage() {
+    @objc func switchLanguage() {
         let switchLanguageViewController = SwitchLanguageViewController.init(style: .grouped)
         let navigationViewController = UINavigationController(rootViewController: switchLanguageViewController)
         switchLanguageViewController.language = language

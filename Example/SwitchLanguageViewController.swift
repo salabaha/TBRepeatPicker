@@ -24,7 +24,7 @@ class SwitchLanguageViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(SwitchLanguageViewController.cancelPressed))
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         dismiss(animated: true, completion: nil)
     }
 
